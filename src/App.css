@@ -13,8 +13,12 @@
 html, body {
     margin: 0;
     padding: 0;
-    font-family: 'DM Sans', sans-serif;    
+    font-family: 'DM Sans', sans-serif;   
     color: var(--black);
+}
+
+p {
+    font-size: 1.2rem;
 }
 
 /* Header Styles */
@@ -41,16 +45,58 @@ nav ul li a {
 }
 
 .icon {
-    height: 5rem;
-    width: 5rem;
+    max-height: 5rem;
+    max-width: 5rem;
     padding: 10px;
     opacity: 0.7;
     transition: transform 0.2s, opacity 0.2s;
 }
 
-.icon:hover {
+.icon-link {
+    margin-left: 2rem;
+    max-height: 2rem;
+    max-width: 2rem;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+.icon:hover, 
+.icon-link:hover {
     transform: scale(1.2);
     opacity: 1;
+}
+
+.tech {
+    overflow: hidden;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-right: 2vw;
+    background-color: var(--main-light);
+    border-radius: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.8s ease;
+    position: relative;
+}
+
+.tech::before,
+.tech::after {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+}
+
+.tech:after {
+    left: -100%;
+    clip-path: polygon(10% 0, 70% 0, 90% 100%, 30% 100%);
+    background-color: rgba(255, 255, 255, 0.6);
+    transition: all 300ms ease;
+}
+
+.tech:hover::after {
+    left: 100%;
 }
 
 .content {
@@ -103,33 +149,24 @@ footer {
    margin-bottom: 3rem;
 }
 
-.click {
+.experience-section {
+    min-height: 60vh;
+}
+
+.experience-menu {
     min-width: 100px;
+    padding: 10px;
     width: 100%;
-    background-color: transparent ;
+    font-size: 1.2rem;
     background-repeat: no-repeat;
-    text-align: left !important;
-    border-color: #3691a1;
-    border-left: 2px solid !important; 
-    border-bottom: none !important;
-    border-top: none !important;
-    border-right: none !important;
-    cursor: pointer;
+    text-align: left;
+    border-left: 2px solid; 
     overflow: hidden;
-    outline: none;
-    color: inherit !important;
-    border-radius: 0;
-    border-top-right-radius: 20px !important;
-    border-bottom-right-radius: 20px !important;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
 }
 
-.click:focus,.click:active {
-    outline: none ;
-    box-shadow: none !important;
-    color: white; 
-}
-
-.click:hover {
+.experience-menu:hover {
     background-color: var(--main-light);
 }
 
@@ -140,13 +177,9 @@ footer {
     border-bottom-right-radius: 20px;
 }
 
-.experience{
-	color: var(--main);
-	font-size: 1.5rem;
-}
-
 .workdates{
 	color: var(--main);
+    font-size: 1.2rem;
 	font-style: italic;
 	padding-bottom: 2vh;
 }
@@ -154,11 +187,7 @@ footer {
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 767px) {
     .click {
-        border-color: gray;
         height: 100%;
-        border-bottom: 2px solid !important; 
-        border-left: none !important;
-        border-radius: 0 !important;
         border-top-left-radius: 20px !important;
         border-top-right-radius: 20px !important;
     }
@@ -207,8 +236,6 @@ footer {
     .experience{
         font-size: 1.8rem;
       }
-
-
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */

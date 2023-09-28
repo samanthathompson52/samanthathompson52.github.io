@@ -8,7 +8,7 @@ const Experience = () => {
     const className = elm.id === selected.id ? 'selected' : '';
     return (
       <div key={elm.id} className={className}>
-        <button type="button" className="btn click" onClick={() => { setSelected(elm); }}>
+        <button type="button" className="experience-menu" onClick={() => { setSelected(elm); }}>
           <span>{elm.position}</span>
         </button>
       </div>
@@ -22,9 +22,9 @@ const Experience = () => {
   ));
 
   return (
-    <div className="content h-screen">
+    <div className="content experience-section">
       <div>
-        <h1 className = "text-5xl bold mb-5">Experience</h1>
+        <h1 className = "text-5xl mb-5">Experience</h1>
         <div>
           <div className="grid grid-cols-6">
             <div className="pr-5 col-span-2">
@@ -32,12 +32,11 @@ const Experience = () => {
             </div>
         
           <div className="col-span-4">          
-              <span className = "experience">{selected.position}</span>              
-              <span className ="experience">
+              <span className = "text-main text-3xl">{selected.position}</span>              
+              <span className ="text-main text-3xl">
                  {' '}
                -
                 {' '}{selected.company}</span>
-        
             <div className = "workdates">{selected.dates}</div>
             <div>
               <ul><h5>
