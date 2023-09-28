@@ -1,0 +1,48 @@
+[
+    {
+        "id": 1,
+        "company":"DelMar",
+        "position":"Software Developer",
+        "dates":"Janurary 2022 to Present",
+        "description":[
+            "Gathered requirements from clients and collaborated with a team of developers to create software for small to medium sized businesses in an agile work environment",
+            "Maintained and designed several normalized databases utilizing SQL Server to support data integrity",
+            "Refactored the company's time keeping software from a Windows Form app to a single page web application using Vue and SyncFusion user interface components",
+            "Orchestrated production release schedules and coordinated team members for seamless software deployments and on-time project delivery",
+            "Improved the company's front-end and back-end templates to decrease the amount of development time needed for software creation"
+        ]
+    },
+    {
+        "id": 2,
+        "company":"Software Developer",
+        "position":"Independent Consultant",
+        "dates":"June 2021 to December 2021",
+        "description":[
+            "Coordinated meetings with clients to establish what they want in an application",
+            "Developed a professional website for a pediatrics office to provide healthcare information to patients",
+            "Configured GitHub actions to automatically redeploy sites to Firebase on commits to master"
+        ]
+    },
+    {
+        "id": 3,
+        "company":"Getz Investigations",
+        "position":"Private Detective Assistant",
+        "dates":"November 2015 to Jan 2018; November 2020 to Present",
+        "description":[
+            "Conducted background checks, asset searches, and analyzed surveillance videos to provide attorneys with information to be used in the court of law",
+            "Gathered property information from the Indiana Assessor to determine people's assets",
+            "Improved office production by creating new forms and documents using Microsoft Word and Excel"
+        ]
+    },
+    {
+        "id":4,
+        "company":"Purdue University",
+        "position":"Research Assistant",
+        "dates":"May 2018 to May 2019",
+        "description":[
+           "Studied the neuronal and behavioral changes in zebra fish when presented with a visual stimulus to invoke a response Studied the neuronal and behavioral changes in zebra fish when presented with a visual stimulus to invoke a response",
+           "Analyzed data using Python and FIGI to clearly understand the impact stimulates had on neural pathways",
+           "Bred zebra fish with genetic mutations to observe the effect in the optic nerve"
+        ]
+    } 
+]

@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
 import Home from './Home.jsx';
+import Contact from './Contact.jsx';
+import Tech from './Tech.jsx';
+import About from './About.jsx';
+import Projects from './Projects.jsx';
+import Experience from './Experience.jsx';
+
+
 import './App.css';
 
 function getYear() {
@@ -18,16 +25,7 @@ function App() {
   return (
     <div>    
       <div className={Loading ? 'App overflow-hidden' : 'App'}>
-        
-        {/* <Loader Loading={Loading} /> */}
-        {/* <Header /> */}
-        {/* <Links /> */}
-        {/* <AboutMe />
-        <Projects />
-        <Experience /> */}
-        {/* <Contact />  */}
-        {/* <Footer /> */}
-        
+              
       </div>
     <header>
         <nav>
@@ -40,25 +38,11 @@ function App() {
     </header>
     
     <Home />
-
-    <section id="about">
-        <div className="content">
-            <h2>About Me</h2>
-            <p>Add your about me content here.</p>
-        </div>
-    </section>
-
-    <section id="portfolio" className="parallax">
-        <div className="content">
-            <h2>Portfolio</h2>
-        </div>
-    </section>
-
-    <section id="contact">
-        <div className="content">
-            <h2>Contact Me</h2>
-        </div>
-    </section>
+    <Contact /> 
+    <About /> 
+    <Experience />
+    <Tech /> 
+    <Projects />
 
     <footer>
         <p>&copy; <span>{getYear()}</span> Samantha Thompson</p>
