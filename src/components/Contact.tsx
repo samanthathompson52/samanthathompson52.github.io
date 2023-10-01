@@ -14,7 +14,7 @@ const Contact = () => {
                 <p>Resume</p>
               </div>
               <div className = "m-2">
-                <a href="mailto:samanthaThompson521@gmail.com" target="_blank" rel="noreferrer"><img src={emailIcon} className = "icon" alt="Email icon"></img></a>
+                <a href="mailto:sthompsonsoftware@gmail.com" target="_blank" rel="noreferrer"><img src={emailIcon} className = "icon" alt="Email icon"></img></a>
                 <p>Email</p>
               </div>
               <div className = "m-2">
