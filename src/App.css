@@ -21,29 +21,6 @@ p {
     font-size: 1.2rem;
 }
 
-/* Header Styles */
-header {
-    color: var(--main); 
-    padding: 2rem;
-    position: absolute;
-    text-transform:uppercase;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-}
-
-nav ul li {
-    margin-right: 40px;
-}
-
-nav ul li a {
-    text-decoration: none;
-    color: inherit;
-    font-weight: bold;
-}
-
 .icon {
     max-height: 5rem;
     max-width: 5rem;
@@ -53,7 +30,6 @@ nav ul li a {
 }
 
 .icon-link {
-    margin-left: 2rem;
     max-height: 2rem;
     max-width: 2rem;
     transition: transform 0.2s, opacity 0.2s;
@@ -70,6 +46,7 @@ nav ul li a {
     padding-left: 2vw;
     padding-right: 2vw;
     margin-right: 2vw;
+    max-width: fit-content;
     background-color: var(--main-light);
     border-radius: 10%;
     display: flex;
@@ -106,6 +83,13 @@ nav ul li a {
     padding: 2rem;
 }
 
+.about-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 10vh;
+    padding: 2rem;
+}
+
 footer {
     text-align: center;
     background-color: var(--main);
@@ -125,11 +109,6 @@ footer {
     z-index: -1;
 }
 
-.landing-text {
-	font-weight: 700;
-    font-size: 4rem;
-}
-
 .hello-image {
     display: none;
     transition: display .5s ease-in-out;
@@ -137,9 +116,10 @@ footer {
 
 .about-me-image {
     border-radius: 50%;
+    margin: 0 auto;
+    max-height: 400px;
     overflow: hidden;
     aspect-ratio: 1;
-    vertical-align:middle;   
 }
 
 .project-card {
@@ -186,10 +166,14 @@ footer {
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 767px) {
-    .click {
+    .experience-menu {
         height: 100%;
-        border-top-left-radius: 20px !important;
-        border-top-right-radius: 20px !important;
+        font-size: 1rem;
+        border-left: none;
+        border-radius: 0;
+        border-bottom: 2px solid; 
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
     }
 
     .selected {
@@ -198,84 +182,34 @@ footer {
         border-top-right-radius: 20px;
     }
 
-    .buttonContainer {
+    .experience-list {
         display: flex;
         overflow-x: auto;
         width: 100%;
         -ms-overflow-style: none;
         scrollbar-width: none;
+        padding-bottom: 2vh;
     }
-    .buttonContainer::-webkit-scrollbar {
+
+    .experience-list::-webkit-scrollbar {
         display: none;
     }
-    .header{
-        justify-content: center !important;
+
+    .experience-section {
+        min-height: 80vh;
     }
-    .header::after {
-        margin-top: 0px;
-        content: '';
-        flex: 0;
-        margin-left: 0;
-        height: 0;
-        background-color: #000;
-      }
+
+    .icon {
+        max-height: 4rem;
+        max-width: 4rem;
+        padding: 10px;
+    }
+
+    .project-card {
+        padding: 5vw;
+    }
+
+    p {
+        font-size: 1rem;
+    }
 }
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
-    .experience{
-        font-size: 1.3rem;
-      }
-}
-
-/* Large devices (laptops/desktops, 1024px and up) */
-@media only screen and (min-width: 1024px) {
-    .test {
-        width: 800px !important;
-    } 
-    .experience{
-        font-size: 1.8rem;
-      }
-}
-
-/* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 1200px) {
-    .test {
-        width: 1000px !important;
-    }  
-
-    .experience{
-        font-size: 2.3rem;
-      }
-}
-
-/* .landing-text:hover + .hello-image {
-    display: block;
-    position: absolute;
-    top: -1rem;
-    left: 10vw;
-    height: 100px;
-    width: 100px;
-  } */
-
-/* @media only screen and (max-width: 1440px) {
-	.landing-page {
-    	margin-left: 7.5vw;
-		margin-top: 20vh;
-	}
-}
-
-@media only screen and (max-width: 768px) {
-	.landing-page {
-    	margin-left: 7.5vw;
-		margin-top: 15vh;
-	}
-}
-
-@media only screen and (max-width: 600px) {
-	.landing-page {
-    	margin-left: 2.5vw;
-		margin-right: 2.5vw;
-		margin-top: 8vh;
-	}
-} */
