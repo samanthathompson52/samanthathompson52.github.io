@@ -1,11 +1,10 @@
 import {useState} from 'react';
-import NavBar from './NavBar.jsx';
-import Home from './Home.jsx';
-import Contact from './Contact.jsx';
-import Tech from './Tech.jsx';
-import About from './About.jsx';
-import Projects from './Projects.jsx';
-import Experience from './Experience.jsx';
+import NavBar from './components/NavBar.tsx';
+import Home from './components/Home.tsx';
+import Contact from './components/Contact.tsx';
+import About from './components/About.tsx';
+import Projects from './components/Projects.tsx';
+import Experience from './components/Experience.tsx';
 import './App.css';
 
 function getYear() {
@@ -29,7 +28,6 @@ function App() {
       <Contact /> 
       <About /> 
       <Experience />
-      {/* <Tech />  */}
       <Projects />
 
       <footer>

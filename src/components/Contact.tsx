@@ -1,7 +1,7 @@
-import resumeIcon from './images/resume-icon.png';
-import emailIcon from './images/email-icon.png';
-import linkedinIcon from './images/linkedin-icon.png';
-import githubIcon from './images/github-circle-icon.png';
+import resumeIcon from '../assets/images/resume-icon.png';
+import emailIcon from '../assets/images/email-icon.png';
+import linkedinIcon from '../assets/images/linkedin-icon.png';
+import githubIcon from '../assets/images/github-circle-icon.png';
 
 const Contact = () => {
   return (

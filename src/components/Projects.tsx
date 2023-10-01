@@ -1,6 +1,6 @@
-import link from './images/link-icon.png';
-import github from './images/github-icon.png';
-import projects from './projects.json';
+import link from '../assets/images/link-icon.png';
+import github from '../assets/images/github-icon.png';
+import projects from '../assets/projects.json';
 
 const Projects = () => {
   const projectList = projects.map((project) => {

@@ -1,5 +1,5 @@
-import headshot from './images/headshot.jpg';
-import wave from './images/wave.png';
+import headshot from '../assets/images/headshot.jpg';
+import wave from '../assets/images/wave.png';
 
 const About = () => {
   return (

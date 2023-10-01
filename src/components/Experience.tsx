@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import work from './work.json';
+import work from '../assets/work.json';
 
 const Experience = () => {
   const [selected, setSelected] = useState(work[0]);

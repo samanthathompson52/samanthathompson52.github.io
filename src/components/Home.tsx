@@ -1,4 +1,4 @@
-import helloImage from './images/hello.png';
+import helloImage from '../assets/images/hello.png';
 
 const Home = () => {
   return (
