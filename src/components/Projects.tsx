@@ -10,10 +10,10 @@ const Projects = () => {
           <h2 className = "text-main md:text-3xl text-2xl bold">{project.name}</h2>
           <div className = "flex md:pr-5 mt-3 ">
             {project.url !== "" &&
-              <a href={project.url} target="_blank"><img src={link} className = "icon-link sm:ml-5 mr-5"></img></a>
+              <a href={project.url} target="_blank" rel="noreferrer"><img src={link} className = "icon-link sm:ml-5 mr-5" alt="Link icon"></img></a>
             }
             {project.repo !== "" &&
-              <a href={project.repo}><img src={github} className = "icon-link"></img></a>
+              <a href={project.repo}><img src={github} className = "icon-link" alt="Github icon"></img></a>
             }   
           </div>
         </div>

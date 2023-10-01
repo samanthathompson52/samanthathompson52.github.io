@@ -7,12 +7,12 @@ const About = () => {
           <div id="about" className = "flex grid md:grid-cols-7 items-center items-end about-content"> 
             <div className = "col-span-3">
               <div className = "about-me-image">
-                <img src={headshot}></img>
+                <img src={headshot} alt="Headshot of Samantha Thompson"></img>
               </div>
             </div>            
             <div className = "self-center md:m-2 md:col-span-4">
               <div className = "wave-container">
-                <img src={wave} className="wave"></img>
+                <img src={wave} className="wave" alt=""></img>
               </div>
               <h1 className = "md:text-5xl text-4xl bold mb-5">About Me</h1>
               <p>Neurobiology & Physiology graduate turned software developer.<br></br><br></br>Throughout my undergraduate education I found myself gaining new experiences in clinical, research, and academia areas of biology. During this, I realized how much of an impact technology can have on healthcare and research!

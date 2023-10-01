@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://samanthathompson.me",
   "dependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
     "@types/node": "^16.18.54",

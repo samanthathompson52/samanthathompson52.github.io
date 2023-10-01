@@ -10,19 +10,19 @@ const Contact = () => {
             <h1 className = "md:text-5xl text-4xl bold">Get in Touch</h1>
             <div className = "flex justify-center pt-3">
               <div className = "m-2">
-                <a href = "/Resume.pdf" target="_blank"><img src={resumeIcon} className = "icon" alt="Resume icon"></img></a>
+                <a href = "/Resume.pdf" target="_blank" rel="noreferrer"><img src={resumeIcon} className = "icon" alt="Resume icon"></img></a>
                 <p>Resume</p>
               </div>
               <div className = "m-2">
-                <a href="mailto:samanthaThompson521@gmail.com" target="_blank"><img src={emailIcon} className = "icon" alt="Email icon"></img></a>
+                <a href="mailto:samanthaThompson521@gmail.com" target="_blank" rel="noreferrer"><img src={emailIcon} className = "icon" alt="Email icon"></img></a>
                 <p>Email</p>
               </div>
               <div className = "m-2">
-                <a href="https://www.linkedin.com/in/sammie-thompson/" target="_blank"><img src={linkedinIcon} className = "icon" alt="LinkedIn icon"></img></a>
+                <a href="https://www.linkedin.com/in/sammie-thompson/" target="_blank" rel="noreferrer"><img src={linkedinIcon} className = "icon" alt="LinkedIn icon"></img></a>
                 <p>LinkedIn</p>
               </div>
               <div className = "m-2">
-                <a href="https://github.com/samanthathompson52" target="_blank"><img src={githubIcon} className = "icon" alt="Github icon"></img></a>
+                <a href="https://github.com/samanthathompson52" target="_blank" rel="noreferrer"><img src={githubIcon} className = "icon" alt="Github icon"></img></a>
                 <p>Github</p>
               </div>
             </div>
