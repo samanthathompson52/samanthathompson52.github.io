@@ -38,7 +38,7 @@ const Experience = () => {
                   {' '}{selected.company}</span>
               <div className = "workdates">{selected.dates}</div>
               <div>
-                <ul>
+                <ul className="pl-5 list-disc">
                   <p>
                   {workBullets}
                   </p>
