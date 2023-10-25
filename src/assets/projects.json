@@ -1,6 +1,19 @@
 [
     {
         "id": 1,
+        "name":"BookIt",
+        "description":"This project is still under development. The goal is to create an application that will simplify scheduling, payments, and website creation for local bands and artists!",
+        "url": "",
+        "repo": "https://github.com/Aplank14/bookit",
+        "techUsed":[
+            "Next.js",
+            "TypeScript",
+            "Tailwind CSS",
+            "Figma"        
+        ]
+    },
+    {
+        "id": 2,
         "name":"Community Discord Bot",
         "description":"Created a custom discord bot that serves as a management and entertainment tool for over 300 people in a Twitch community. Features include automatic role assigment, queue system, custom welcome messages, and role assigment based upon user reactions.",
         "url": "",
@@ -11,7 +24,7 @@
         ]
     },
     {
-        "id": 2,
+        "id": 3,
         "name":"Pediatrics Office Website",
         "description":"Designed and built an original website for a local pediatric practice. The website features information on both of their locations, services, staff and medical education documents.",
         "url": "https://lincolnpediatrics.health/",
