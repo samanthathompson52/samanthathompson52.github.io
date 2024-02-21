@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - id: build-publish
-      uses: andyplank/github-actions-react-to-github-pages@added-caching
+      uses: bitovi/github-actions-react-to-github-pages@v1.2.2
       with:
         path: build
         caching: true
