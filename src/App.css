@@ -46,6 +46,7 @@ p {
     padding-left: 2vw;
     padding-right: 2vw;
     margin-right: 2vw;
+    margin-top: 2vw;
     max-width: fit-content;
     background-color: var(--main-light);
     border-radius: 10%;
