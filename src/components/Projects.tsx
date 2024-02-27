@@ -19,8 +19,8 @@ const Projects = () => {
         </div>
         <p className = "pt-5 pb-5">{project.description}</p>
         <div className ="flex flex-wrap">
-          {project.techUsed.map(tech => (
-              <div key={project.id} className="tech"><p>{tech}</p></div>
+          {project.techUsed.map((tech, idx) => (
+              <div key={project.id + idx} className="tech"><p>{tech}</p></div>
           ))}
         </div>
       </div>
