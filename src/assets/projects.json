@@ -40,7 +40,7 @@
         "id": 4,
         "name":"Pediatrics Office Website",
         "description":"Designed and built an original website for a local pediatric practice. The website features information on both of their locations, services, staff and medical education documents.",
-        "url": "https://lincolnpediatrics.health/",
+        "url": "",
         "repo": "https://github.com/samanthathompson52/lincoln",
         "techUsed":[
             "React",

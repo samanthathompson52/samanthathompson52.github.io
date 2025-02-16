@@ -10,7 +10,7 @@ const Contact = () => {
             <h1 className = "md:text-5xl text-4xl bold">Get in Touch</h1>
             <div className = "flex justify-center pt-3">
               <div className = "m-2">
-                <a href = "/Resume.pdf" target="_blank" rel="noreferrer"><img src={resumeIcon} className = "icon" alt="Resume icon"></img></a>
+                <a href = "/Samantha_Thompson_Resume.pdf" target="_blank" rel="noreferrer"><img src={resumeIcon} className = "icon" alt="Resume icon"></img></a>
                 <p>Resume</p>
               </div>
               <div className = "m-2">

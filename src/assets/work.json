@@ -1,21 +1,34 @@
 [
     {
         "id": 1,
-        "company":"DelMar",
-        "position":"Software Developer",
-        "dates":"Janurary 2022 to Present",
+        "company":"DELMAR Software",
+        "position":"Software Developer II",
+        "dates":"June 2024 to Present",
         "description":[
-            "Integrated roles and permissions for over 18,000 users to create varying levels of functionality between application admins, hospitals, and users seeking employment",
-            "Implemented a payment system utilizing Stripe's API to record shifts worked by users and generate an invoice PDF that is later emailed to users",
-            "Gathered requirements from clients and collaborated with a team of developers to create custom software for small to medium sized businesses in an agile work environment",
-            "Maintained and designed several normalized databases utilizing SQL Server to support data integrity",
-            "Refactored the company's timekeeping software from a Windows Forms app to a single-page web application using Vue and SyncFusion user interface components",
-            "Orchestrated production release schedules and coordinated team members for seamless software deployments and on-time project delivery",
-            "Improved the company's front-end and back-end templates to decrease the amount of development time needed for software creation"
+            "Led software development teams and coordinated production release schedules to ensure seamless deployments, on-time project delivery, and generated over $1.25 million in revenue",
+            "Developed custom REST APIs in .NET 6 to meet client-specific requirements, ensuring scalability, security, and seamless integration with existing systems",
+            "Designed and optimized normalized SQL Server databases to improve data integrity, reduce redundancy, and enhance query performance",
+            "Refactored API endpoints for an agricultural business that lead to an average of 162% reduction in response times",
+            "Integrated existing client applications with third-party APIs ranging from AI-powered sewer condition assessments to non-profit content management systems",
+            "Served as project manager for multiple applications by leading developers and communicating project schedules, status updates, and biweekly invoices to clients and stakeholders"
         ]
     },
     {
         "id": 2,
+        "company":"DELMAR Software",
+        "position":"Software Developer I",
+        "dates":"Janurary 2022 to June 2024",
+        "description":[
+            "Collaborated with developers to design and deliver custom software solutions for small to medium-sized businesses in an agile environment",
+            "Implemented a new payment system using Stripe Custom Connect to facilitate the secure transfer of over $6,000,000 to users",
+            "Automated weekly hospital invoicing by emailing and generating custom PDF invoices to streamline the billing workflow and improve the efficiency of the scheduling company",
+            "Diagnosed and resolved a wide range of software bugs in legacy applications, ensuring uninterrupted support for clients and their businesses",
+            "Refactored the company's timekeeping software from a Windows Forms app to a single-page web application using Vue and SyncFusion user interface components",
+            "Improved the company's Vue and .NET templates to decrease the amount of development time needed for software creation"
+        ]
+    },
+    {
+        "id": 3,
         "company":"Software Developer",
         "position":"Independent Consultant",
         "dates":"June 2021 to December 2021",
@@ -26,7 +39,7 @@
         ]
     },
     {
-        "id": 3,
+        "id": 4,
         "company":"Getz Investigations",
         "position":"Private Detective Assistant",
         "dates":"November 2015 to Jan 2018; November 2020 to Present",
@@ -37,7 +50,7 @@
         ]
     },
     {
-        "id":4,
+        "id":5,
         "company":"Purdue University",
         "position":"Research Assistant",
         "dates":"May 2018 to May 2019",

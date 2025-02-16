@@ -16,9 +16,9 @@ const About = () => {
               </div>
               <h1 className = "md:text-5xl text-4xl bold mb-5">About Me</h1>
               <p>
-                Neurobiology & Physiology graduate turned Software Developer.
+                Software Engineer & Techinical Project Manager
                 <br></br><br></br>
-                Throughout my undergraduate education, I gained new experiences in clinical, research, and academic areas of biology. During this I realized how much of an impact technology can have on healthcare and research! I discovered I loved programming through several of Purdue University's computer science courses and now I continue to dedicate my time to learning even more about the growing technologies of the world!               
+                Working professionally as a software enginner for the past three years, I have had the privilege of contributing to a diverse range of projects. The rapid evolution of technology and its limitless applications continue to inspire me. I have led initiatives across various sectors, including healthcare, agriculture, and non-profit organizations. Outside of coding, I am passionate about reading and writing fantasy, as well as enjoying video and board games. It has always been my childhood dream to open a board game café!
               </p>
             </div>
           </div>
