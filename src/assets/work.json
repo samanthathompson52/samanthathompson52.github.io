@@ -1,5 +1,18 @@
 [
     {
+        "id": 0,
+        "company":"Finnly, LLC",
+        "position":"Founder & Lead Software Engineer",
+        "dates":"November 2025 to Present",
+        "description":[
+            "Architected and developed a multi-tenant SaaS platform using Next.js, enabling pet care businesses to onboard with automated infrastructure provisioning, subscription management, and dedicated application deployment",
+            "Engineered automated provisioning pipeline integrating Neon PostgreSQL, DigitalOcean, and Resend to dynamically create dedicated databases, cloud instances, and email services for each new customer",
+            "Implemented Stripe based subscription and billing system supporting tiered plans, recurring payments, checkout sessions, and a self-service customer billing portal",
+            "Built a full-stack administrative dashboard using React and Tailwind CSS for management across customer records, lead tracking, health monitoring, and audit logs",
+            "Created a self-service customer portal enabling business owners to manage subscriptions, complete onboarding workflows, and access their dedicated application instances"
+        ]
+    },
+    {
         "id": 1,
         "company":"DELMAR Software",
         "position":"Software Developer II",
@@ -39,18 +52,7 @@
         ]
     },
     {
-        "id": 4,
-        "company":"Getz Investigations",
-        "position":"Private Detective Assistant",
-        "dates":"November 2015 to Jan 2018; November 2020 to Present",
-        "description":[
-            "Conducted background checks, asset searches, and analyzed surveillance videos to provide attorneys with information to be used in the court of law",
-            "Gathered property information from the Indiana Assessor to determine people's assets",
-            "Improved office production by creating new forms and documents using Microsoft Word and Excel"
-        ]
-    },
-    {
-        "id":5,
+        "id":4,
         "company":"Purdue University",
         "position":"Research Assistant",
         "dates":"May 2018 to May 2019",

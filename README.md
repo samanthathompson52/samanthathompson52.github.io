@@ -6,7 +6,7 @@ A personal portfolio to showcase my experience, projects, and technical skills. 
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm start`  
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -20,7 +20,7 @@ The build is minified and the filenames include the hashes.\
 
 ## MIT License
 
-Copyright (c) [2025] [Samantha Thompson]
+Copyright (c) [2026] [Samantha Thompson]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

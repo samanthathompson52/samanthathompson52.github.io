@@ -18,7 +18,7 @@ const About = () => {
               <p>
                 Software Engineer & Techinical Project Manager
                 <br></br><br></br>
-                Working professionally as a software enginner for the past three years, I have had the privilege of contributing to a diverse range of projects. The rapid evolution of technology and its limitless applications continue to inspire me. I have led initiatives across various sectors, including healthcare, agriculture, and non-profit organizations. Outside of coding, I am passionate about reading and writing fantasy, as well as enjoying video and board games. It has always been my childhood dream to open a board game café!
+                Working professionally as a software enginner for the past four years, I have had the privilege of contributing to a diverse range of projects. The rapid evolution of technology and its limitless applications continue to inspire me. I have led initiatives across various sectors, including healthcare, agriculture, and non-profit organizations. Outside of coding, I am passionate about reading and writing fantasy, as well as enjoying video and board games. It has always been my childhood dream to open a board game café!
               </p>
             </div>
           </div>

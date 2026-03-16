@@ -1,15 +1,15 @@
 [
     {
         "id": 1,
-        "name":"BookIt",
-        "description":"This project is still under development. The goal is to create an application that will simplify scheduling, payments, and website creation for local bands and artists!",
-        "url": "",
-        "repo": "https://github.com/andyplank/bookit",
+        "name":"Finnly",
+        "description":"Finnly is a production SaaS platform for pet trainers and facility management with active customers. I developed the platform with real dog trainers to support business workflows including client management, payment processing, scheduling, and facility operations.",
+        "url": "https://finnly.net",
+        "repo": "",
         "techUsed":[
             "Next.js",
-            "TypeScript",
-            "Tailwind CSS",
-            "Figma"        
+            "Digital Ocean",
+            "AWS",
+            "PostgreSQL"        
         ]
     },
     {
