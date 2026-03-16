@@ -39,9 +39,7 @@ const Experience = () => {
               <div className = "workdates">{selected.dates}</div>
               <div>
                 <ul className="pl-5 list-disc">
-                  <p>
                   {workBullets}
-                  </p>
                 </ul>
               </div>
             </div>

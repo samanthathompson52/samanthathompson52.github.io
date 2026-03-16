@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import NavBar from './components/NavBar.tsx';
 import Home from './components/Home.tsx';
 import Contact from './components/Contact.tsx';
@@ -13,22 +13,28 @@ function getYear() {
 
 function App() {
 
-  const [Loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
 
-  setTimeout(()=>{
+  useEffect(() => {
+    const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000
-  );
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div>    
-      <div className={Loading ? 'App overflow-hidden' : 'App'}></div>
+      <div className={loading ? 'App overflow-hidden' : 'App'}></div>
 
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-main focus:text-white">Skip to content</a>
       <NavBar />
+      <main id="main-content">
       <Home />
       <Contact /> 
       <About /> 
       <Experience />
       <Projects />
+      </main>
 
       <footer>
           <p>&copy; <span>{getYear()}</span> Samantha Thompson</p>

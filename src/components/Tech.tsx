@@ -1,6 +1,6 @@
-import resumeIcon from './images/resume-icon.png';
-import emailIcon from './images/email-icon.png';
-import linkedinIcon from './images/linkedin-icon.png';
+import resumeIcon from '../assets/images/resume-icon.png';
+import emailIcon from '../assets/images/email-icon.png';
+import linkedinIcon from '../assets/images/linkedin-icon.png';
 
 const Tech = () => {
   return (
