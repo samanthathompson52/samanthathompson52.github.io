@@ -2,27 +2,28 @@
     {
         "id": 0,
         "company":"Finnly, LLC",
-        "position":"Founder & Technical Product Manager",
+        "position":"Founder & Lead Software Engineer",
         "dates":"November 2025 to Present",
         "description":[
-            "Founded and led all product, engineering, and business operations for a production SaaS platform serving real paying customers in the pet care industry",
-            "Defined product roadmap, prioritized features based on customer feedback, and managed the full delivery lifecycle from concept through launch",
-            "Architected and developed a multi-tenant SaaS platform using Next.js with automated infrastructure provisioning, subscription management, and dedicated per-customer application deployment",
+            "Architected and developed a multi-tenant SaaS platform using Next.js, enabling pet care businesses to onboard with automated infrastructure provisioning, subscription management, and dedicated application deployment",
             "Engineered automated provisioning pipeline integrating Neon PostgreSQL, DigitalOcean, and Resend to dynamically create dedicated databases, cloud instances, and email services for each new customer",
-            "Implemented Stripe-based subscription and billing system supporting tiered plans, recurring payments, checkout sessions, and a self-service customer billing portal"
+            "Implemented Stripe based subscription and billing system supporting tiered plans, recurring payments, checkout sessions, and a self-service customer billing portal",
+            "Built a full-stack administrative dashboard using React and Tailwind CSS for management across customer records, lead tracking, health monitoring, and audit logs",
+            "Created a self-service customer portal enabling business owners to manage subscriptions, complete onboarding workflows, and access their dedicated application instances"
         ]
     },
     {
         "id": 1,
         "company":"DELMAR Software",
-        "position":"Software Developer II & Technical Project Manager",
+        "position":"Software Developer II",
         "dates":"June 2024 to Present",
         "description":[
-            "Served as project manager for multiple client applications, owning project schedules, status updates, risk communication, and biweekly invoice delivery to clients and stakeholders",
             "Led software development teams and coordinated production release schedules to ensure seamless deployments, on-time project delivery, and generated over $1.25 million in revenue",
-            "Integrated existing client applications with third-party APIs spanning AI-powered sewer condition assessments and non-profit content management systems",
             "Developed custom REST APIs in .NET 6 to meet client-specific requirements, ensuring scalability, security, and seamless integration with existing systems",
-            "Refactored API endpoints for an agricultural client, resulting in an average 162% reduction in response times"
+            "Designed and optimized normalized SQL Server databases to improve data integrity, reduce redundancy, and enhance query performance",
+            "Refactored API endpoints for an agricultural business that lead to an average of 162% reduction in response times",
+            "Integrated existing client applications with third-party APIs ranging from AI-powered sewer condition assessments to non-profit content management systems",
+            "Served as project manager for multiple applications by leading developers and communicating project schedules, status updates, and biweekly invoices to clients and stakeholders"
         ]
     },
     {
@@ -31,11 +32,12 @@
         "position":"Software Developer I",
         "dates":"January 2022 to June 2024",
         "description":[
-            "Delivered custom software solutions for small to medium-sized businesses in an agile environment, collaborating cross-functionally to scope, build, and ship on schedule",
-            "Scoped and delivered a payment infrastructure overhaul using Stripe Custom Connect, enabling the secure transfer of over $6,000,000 to users",
-            "Identified a recurring invoicing inefficiency at a hospital client and delivered an automated PDF invoicing system, streamlining billing workflows and reducing manual effort",
-            "Led modernization of the company's legacy timekeeping application, migrating from Windows Forms to a React single-page web application",
-            "Improved internal Vue and .NET project templates to reduce ramp-up time on new client engagements"
+            "Collaborated with developers to design and deliver custom software solutions for small to medium-sized businesses in an agile environment",
+            "Implemented a new payment system using Stripe Custom Connect to facilitate the secure transfer of over $6,000,000 to users",
+            "Automated weekly hospital invoicing by emailing and generating custom PDF invoices to streamline the billing workflow and improve the efficiency of the scheduling company",
+            "Diagnosed and resolved a wide range of software bugs in legacy applications, ensuring uninterrupted support for clients and their businesses",
+            "Refactored the company's timekeeping software from a Windows Forms app to a single-page web application using Vue and SyncFusion user interface components",
+            "Improved the company's Vue and .NET templates to decrease the amount of development time needed for software creation"
         ]
     },
     {

@@ -25,7 +25,7 @@ const Home = () => {
 
         {/* Scroll indicator */}
         <a
-          href="#about"
+          href="#contact"
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center text-gray-400 hover:text-main transition-colors animate-bounce"
           aria-label="Scroll down"
         >

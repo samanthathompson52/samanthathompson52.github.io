@@ -6,6 +6,7 @@ import About from './components/About.tsx';
 import Projects from './components/Projects.tsx';
 import Experience from './components/Experience.tsx';
 import Tech from './components/Tech.tsx';
+import FinnlyShowcase from './components/FinnlyShowcase.tsx';
 import './App.css';
 
 function getYear() {
@@ -35,6 +36,7 @@ function App() {
       <About /> 
       <Tech />
       <Experience />
+      <FinnlyShowcase />
       <Projects />
       </main>
 
