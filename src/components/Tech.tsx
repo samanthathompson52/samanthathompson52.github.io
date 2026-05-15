@@ -8,7 +8,7 @@ const Tech = () => {
     {
       title: 'Technical',
       certs: [],
-      skills: ['SQL', 'AWS', 'C#', 'TypeScript / JavaScript', '.NET', 'Python', 'Vue.js', 'React', 'Tailwind CSS', 'Java'],
+      skills: ['SQL', 'AWS', 'C#', 'Next.js', 'TypeScript / JavaScript', '.NET', 'Python', 'Vue', 'React', 'Tailwind CSS', 'Java', 'HTML/CSS'],
     },
     {
       title: 'Tools',
