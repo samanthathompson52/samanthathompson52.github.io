@@ -44,13 +44,15 @@ p {
 
 .tech {
     overflow: hidden;
-    padding-left: 2vw;
-    padding-right: 2vw;
-    margin-right: 2vw;
-    margin-top: 2vw;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    margin-right: 0;
+    margin-top: 0;
     max-width: fit-content;
     background-color: var(--main-light);
-    border-radius: 10%;
+    border-radius: 9999px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,17 +105,11 @@ footer {
 	height: 100vh;
     position: relative;
 	display: flex;
+    align-items: center;
     background-image: url("./assets/images/background.png");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    position: relative;
-    z-index: -1;
-}
-
-.hello-image {
-    display: none;
-    transition: display .5s ease-in-out;
 }
 
 .about-me-image {

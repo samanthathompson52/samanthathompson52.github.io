@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name":"Finnly",
-        "description":"Finnly is a production SaaS platform for pet trainers and facility management with active customers. I developed the platform with real dog trainers to support business workflows including client management, payment processing, scheduling, and facility operations.",
+        "description":"Independently scoped, designed, and launched a production SaaS platform with real paying customers in the pet care industry. I drove the full product lifecycle — from requirements gathering with real dog trainers through architecture, development, and ongoing delivery — supporting business workflows including client management, payment processing, scheduling, and facility operations.",
         "url": "https://finnly.net",
         "repo": "",
         "techUsed":[
@@ -15,7 +15,7 @@
     {
         "id": 2,
         "name":"Honeypot",
-        "description":"An online party game that uses Webhooks! Users can create a game room and invite friends to join. Players will then answer prompts and take turns trying to match players to their answers.",
+        "description":"Designed and shipped an online multiplayer party game end-to-end with a collaborator, from concept through production deployment. Users can create game rooms and invite friends to join, then answer prompts and match players to their answers.",
         "url": "https://playhoneypot.com",
         "repo": "https://github.com/andyplank/honeypot",
         "techUsed":[
@@ -28,7 +28,7 @@
     {
         "id": 3,
         "name":"Community Discord Bot",
-        "description":"Created a custom discord bot that serves as a management and entertainment tool for over 300 people in a Twitch community. Features include automatic role assigment, queue system, custom welcome messages, and role assigment based upon user reactions.",
+        "description":"Created a custom Discord bot serving as a management and entertainment tool for over 300 members of a Twitch community. Features include automatic role assignment, a queue system, custom welcome messages, and reaction-based role assignment.",
         "url": "",
         "repo": "https://github.com/samanthathompson52/discord-bot",
         "techUsed":[
@@ -39,7 +39,7 @@
     {
         "id": 4,
         "name":"Pediatrics Office Website",
-        "description":"Designed and built an original website for a local pediatric practice. The website features information on both of their locations, services, staff and medical education documents.",
+        "description":"Delivered a complete website for an external stakeholder (local pediatric practice), managing requirements through launch. The site covers both locations, services, staff profiles, and medical education documents.",
         "url": "",
         "repo": "https://github.com/samanthathompson52/lincoln",
         "techUsed":[

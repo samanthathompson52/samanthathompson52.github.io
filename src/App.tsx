@@ -5,6 +5,7 @@ import Contact from './components/Contact.tsx';
 import About from './components/About.tsx';
 import Projects from './components/Projects.tsx';
 import Experience from './components/Experience.tsx';
+import Tech from './components/Tech.tsx';
 import './App.css';
 
 function getYear() {
@@ -32,6 +33,7 @@ function App() {
       <Home />
       <Contact /> 
       <About /> 
+      <Tech />
       <Experience />
       <Projects />
       </main>

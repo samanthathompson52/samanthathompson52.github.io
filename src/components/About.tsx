@@ -16,9 +16,9 @@ const About = () => {
               </div>
               <h1 className = "md:text-5xl text-4xl bold mb-5">About Me</h1>
               <p>
-                Software Engineer & Technical Project Manager
+                Technical Project Manager
                 <br></br><br></br>
-                Working professionally as a software engineer for the past four years, I have had the privilege of contributing to a diverse range of projects. The rapid evolution of technology and its limitless applications continue to inspire me. I have led initiatives across various sectors, including healthcare, agriculture, and non-profit organizations. Outside of coding, I am passionate about reading and writing fantasy, as well as enjoying video and board games. It has always been my childhood dream to open a board game café!
+                With four years of professional experience delivering software across healthcare, agriculture, and non-profit sectors, I transitioned into Technical Project Management to lead projects end-to-end — from scoping and planning through stakeholder communication and launch. My engineering background gives me a rare advantage: I can translate between business goals and technical reality, accurately scope work, unblock developers, and hold delivery timelines without sacrificing quality. Outside of work, I am passionate about reading and writing fantasy, as well as enjoying video and board games.
               </p>
             </div>
           </div>

@@ -3,14 +3,15 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'About', href: '#about'},
-  { name: 'Contact', href: '#contact'},
   { name: 'Experience', href: '#experience'},
+  { name: 'Skills', href: '#tech'},
   { name: 'Projects', href: '#projects'},
+  { name: 'Contact', href: '#contact'},
 ]
 
 export default function Example() {
   return (
-    <Disclosure as="nav" className="absolute">
+    <Disclosure as="nav" className="absolute z-10">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
