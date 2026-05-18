@@ -9,7 +9,7 @@ const Home = () => {
         <div className="self-center md:pl-20 pl-6 z-10">
           {/* Title block */}
           <h1 className="md:text-7xl text-5xl font-bold pb-3">Samantha Thompson</h1>
-          <div className="flex items-center gap-4 mb-10">
+          <div className="flex flex-col md:flex-row md:items-center gap-4 mb-10">
             <h2 className="text-main text-3xl">Technical Project Manager</h2>
             <PmpBadge />
           </div>
