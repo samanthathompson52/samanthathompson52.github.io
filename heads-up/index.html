@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0f172a" />
+  <title>Heads Up Party — Guessing Game</title>
+  <meta name="description" content="A free Heads Up style party game with ready-to-play card packs. Hold the phone to your forehead, tilt down for correct, up to pass." />
+  <style>
+    :root {
+      --accent: #8b5cf6;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --correct: #22c55e;
+      --pass: #f59e0b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html, body { height: 100%; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow: hidden;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    #app { height: 100dvh; display: flex; flex-direction: column; }
+    .screen { flex: 1; display: none; flex-direction: column; overflow-y: auto; padding: env(safe-area-inset-top) 20px env(safe-area-inset-bottom); }
+    .screen.active { display: flex; }
+
+    /* ---------- Home ---------- */
+    .home-header { text-align: center; padding: 32px 0 16px; }
+    .home-header h1 { font-size: clamp(2rem, 8vw, 3rem); font-weight: 800; letter-spacing: -1px; }
+    .home-header h1 .up { color: var(--accent); }
+    .home-header p { color: var(--muted); margin-top: 8px; font-size: 0.95rem; }
+
+    .settings-bar {
+      display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;
+      margin: 8px auto 20px; max-width: 520px;
+    }
+    .seg { display: inline-flex; background: var(--card); border-radius: 12px; padding: 4px; }
+    .seg button {
+      border: none; background: transparent; color: var(--muted); font-weight: 600;
+      padding: 8px 14px; border-radius: 9px; cursor: pointer; font-size: 0.9rem;
+    }
+    .seg button.on { background: var(--accent); color: #fff; }
+    .seg-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; align-self: center; margin-right: 4px; }
+
+    .deck-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 14px; max-width: 900px; margin: 0 auto; width: 100%; padding-bottom: 30px;
+    }
+    .deck {
+      position: relative; border-radius: 18px; padding: 18px 16px 16px; cursor: pointer;
+      background: var(--card); border: 1px solid rgba(255,255,255,0.06);
+      transition: transform .12s ease, box-shadow .12s ease; overflow: hidden; min-height: 130px;
+      display: flex; flex-direction: column;
+    }
+    .deck:hover, .deck:active { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+    .deck .glow { position: absolute; top: -40px; right: -40px; width: 120px; height: 120px; border-radius: 50%; opacity: .35; filter: blur(20px); }
+    .deck .emoji { font-size: 2.2rem; }
+    .deck .name { font-weight: 700; font-size: 1.05rem; margin-top: 8px; }
+    .deck .desc { color: var(--muted); font-size: 0.78rem; margin-top: 4px; flex: 1; }
+    .deck .count { font-size: 0.72rem; color: var(--muted); margin-top: 10px; font-weight: 600; }
+    .deck.custom .badge { position: absolute; top: 12px; right: 12px; font-size: 0.62rem; background: rgba(255,255,255,0.12); padding: 3px 8px; border-radius: 20px; letter-spacing: .5px; }
+    .deck.new-deck { border: 2px dashed rgba(255,255,255,0.2); background: transparent; align-items: center; justify-content: center; text-align: center; }
+    .deck.new-deck .emoji { opacity: .8; }
+
+    /* ---------- Ready ---------- */
+    .center-col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 18px; }
+    .ready-emoji { font-size: 4rem; }
+    .ready h2 { font-size: 1.8rem; }
+    .howto { max-width: 340px; color: var(--muted); line-height: 1.6; font-size: 0.95rem; }
+    .howto b { color: var(--text); }
+    .tilt-note { font-size: 0.8rem; color: var(--muted); max-width: 320px; }
+
+    .btn {
+      border: none; border-radius: 14px; padding: 15px 30px; font-size: 1.05rem; font-weight: 700;
+      cursor: pointer; background: var(--accent); color: #fff; transition: transform .1s, filter .1s;
+    }
+    .btn:active { transform: scale(0.97); }
+    .btn.big { padding: 18px 44px; font-size: 1.2rem; }
+    .btn.ghost { background: rgba(255,255,255,0.08); color: var(--text); }
+    .btn:disabled { opacity: .5; cursor: default; }
+    .link-btn { background: none; border: none; color: var(--muted); text-decoration: underline; cursor: pointer; font-size: 0.9rem; padding: 8px; }
+    .top-back { align-self: flex-start; padding: 12px 4px; }
+
+    /* ---------- Countdown ---------- */
+    #countdown-screen { align-items: center; justify-content: center; }
+    .count-num { font-size: 9rem; font-weight: 900; animation: pop .8s ease; }
+    @keyframes pop { 0% { transform: scale(0.3); opacity: 0; } 40% { transform: scale(1.1); opacity: 1; } 100% { transform: scale(1); } }
+
+    /* ---------- Play ---------- */
+    #play-screen { padding: 0; }
+    .play-wrap { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; transition: background-color .15s; padding: 20px; }
+    .timer-pill { position: absolute; top: calc(env(safe-area-inset-top) + 14px); left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.35); padding: 6px 18px; border-radius: 30px; font-weight: 800; font-size: 1.4rem; letter-spacing: 1px; }
+    .score-pill { position: absolute; top: calc(env(safe-area-inset-top) + 14px); right: 16px; background: rgba(0,0,0,0.25); padding: 6px 14px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; }
+    .the-word { font-size: clamp(2.4rem, 11vw, 5.5rem); font-weight: 800; text-align: center; line-height: 1.05; padding: 0 10px; }
+    .feedback-word { font-size: clamp(3rem, 16vw, 7rem); font-weight: 900; text-align: center; }
+    .tap-zones { position: absolute; inset: 0; display: flex; }
+    .tap-zones .zone { flex: 1; }
+    .play-hint { position: absolute; bottom: calc(env(safe-area-inset-bottom) + 22px); left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 24px; font-size: 0.85rem; font-weight: 700; opacity: .85; }
+    .play-hint .pass-h { color: #ffe; }
+    .desktop-controls { position: absolute; bottom: calc(env(safe-area-inset-bottom) + 60px); left: 0; right: 0; display: flex; gap: 16px; justify-content: center; }
+
+    /* ---------- Results ---------- */
+    .results-head { text-align: center; padding-top: 24px; }
+    .results-head .final-score { font-size: 5rem; font-weight: 900; color: var(--accent); line-height: 1; }
+    .results-head .final-label { color: var(--muted); text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; }
+    .result-list { max-width: 480px; width: 100%; margin: 20px auto; display: flex; flex-direction: column; gap: 8px; }
+    .result-item { display: flex; align-items: center; gap: 12px; background: var(--card); padding: 12px 16px; border-radius: 12px; }
+    .result-item .ic { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; font-size: 0.9rem; flex-shrink: 0; }
+    .result-item.correct .ic { background: var(--correct); }
+    .result-item.pass .ic { background: var(--pass); }
+    .result-item .w { font-weight: 600; }
+    .results-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; padding: 10px 0 40px; }
+
+    /* ---------- Builder ---------- */
+    .builder { max-width: 480px; width: 100%; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; padding-bottom: 40px; }
+    .builder label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+    .builder input, .builder textarea {
+      width: 100%; background: var(--card); border: 1px solid rgba(255,255,255,0.1); color: var(--text);
+      border-radius: 12px; padding: 14px; font-size: 1rem; font-family: inherit; resize: vertical;
+    }
+    .builder textarea { min-height: 180px; }
+    .builder .row { display: flex; gap: 10px; }
+    .emoji-pick { display: flex; gap: 8px; flex-wrap: wrap; }
+    .emoji-pick button { font-size: 1.4rem; background: var(--card); border: 2px solid transparent; border-radius: 10px; padding: 6px 10px; cursor: pointer; }
+    .emoji-pick button.on { border-color: var(--accent); }
+    .hint-sm { font-size: 0.8rem; color: var(--muted); }
+    .footer-credit { text-align: center; color: var(--muted); font-size: 0.72rem; padding: 10px 0 20px; }
+    .rotate-tip { position: fixed; inset: 0; background: var(--bg); display: none; align-items: center; justify-content: center; text-align: center; padding: 30px; z-index: 50; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <!-- HOME -->
+    <section id="home-screen" class="screen active">
+      <div class="home-header">
+        <h1>Heads <span class="up">Up!</span></h1>
+        <p>Pick a deck. Hold the phone to your forehead. Guess the word before time runs out.</p>
+      </div>
+
+      <div class="settings-bar">
+        <div class="seg" id="timer-seg">
+          <span class="seg-label">Timer</span>
+          <button data-sec="60">60s</button>
+          <button data-sec="90" class="on">90s</button>
+          <button data-sec="120">120s</button>
+        </div>
+        <div class="seg" id="control-seg">
+          <span class="seg-label">Controls</span>
+          <button data-mode="tilt" class="on">Tilt</button>
+          <button data-mode="tap">Tap</button>
+        </div>
+      </div>
+
+      <div class="deck-grid" id="deck-grid"></div>
+      <div class="footer-credit">Free to play & share • Add your own decks anytime</div>
+    </section>
+
+    <!-- READY -->
+    <section id="ready-screen" class="screen">
+      <button class="btn ghost top-back" onclick="Game.goHome()">‹ Decks</button>
+      <div class="center-col ready">
+        <div class="ready-emoji" id="ready-emoji">🦁</div>
+        <h2 id="ready-name">Animals</h2>
+        <div class="howto">
+          When the timer starts, hold the phone on your <b>forehead</b> facing out.<br />
+          <b id="howto-correct">Tilt down</b> = correct ✅<br />
+          <b id="howto-pass">Tilt up</b> = pass ⏭️
+        </div>
+        <div class="tilt-note" id="tilt-note"></div>
+        <button class="btn big" onclick="Game.beginCountdown()">Start Round</button>
+      </div>
+    </section>
+
+    <!-- COUNTDOWN -->
+    <section id="countdown-screen" class="screen">
+      <div class="count-num" id="count-num">3</div>
+    </section>
+
+    <!-- PLAY -->
+    <section id="play-screen" class="screen">
+      <div class="play-wrap" id="play-wrap">
+        <div class="timer-pill" id="timer-pill">90</div>
+        <div class="score-pill" id="score-pill">0 ✅</div>
+        <div class="the-word" id="the-word">Word</div>
+        <div class="tap-zones" id="tap-zones">
+          <div class="zone" data-act="pass"></div>
+          <div class="zone" data-act="correct"></div>
+        </div>
+        <div class="play-hint" id="play-hint">
+          <span class="pass-h">⏭️ Tap left = Pass</span>
+          <span class="correct-h">Tap right = Got it ✅</span>
+        </div>
+        <div class="desktop-controls" id="desktop-controls" style="display:none">
+          <button class="btn ghost" onclick="Game.answer('pass')">⏭️ Pass (←)</button>
+          <button class="btn" onclick="Game.answer('correct')">✅ Got it (→)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- RESULTS -->
+    <section id="results-screen" class="screen">
+      <div class="results-head">
+        <div class="final-score" id="final-score">0</div>
+        <div class="final-label">Correct</div>
+      </div>
+      <div class="result-list" id="result-list"></div>
+      <div class="results-actions">
+        <button class="btn" onclick="Game.beginCountdown()">Play Again</button>
+        <button class="btn ghost" onclick="Game.goHome()">Change Deck</button>
+      </div>
+    </section>
+
+    <!-- BUILDER -->
+    <section id="builder-screen" class="screen">
+      <button class="btn ghost top-back" onclick="Game.goHome()">‹ Decks</button>
+      <div class="center-col" style="justify-content:flex-start;padding-top:8px">
+        <h2 style="align-self:center">Build a Deck</h2>
+        <div class="builder">
+          <div>
+            <label>Deck name</label>
+            <input id="b-name" placeholder="e.g. Office Inside Jokes" maxlength="30" />
+          </div>
+          <div>
+            <label>Icon</label>
+            <div class="emoji-pick" id="emoji-pick"></div>
+          </div>
+          <div>
+            <label>Cards — one per line</label>
+            <textarea id="b-cards" placeholder="Stapler in Jell-O&#10;The coffee machine&#10;Friday standup&#10;..."></textarea>
+            <div class="hint-sm" id="b-count">0 cards — add at least 5</div>
+          </div>
+          <div class="row">
+            <button class="btn" style="flex:1" onclick="Game.saveCustom()">Save Deck</button>
+          </div>
+          <div class="hint-sm">Saved decks live in this browser only. Great for parties, teams, or classrooms.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="rotate-tip" id="rotate-tip">
+    <div>
+      <div style="font-size:3rem">🔄</div>
+      <p style="margin-top:10px">Rotate back to portrait to keep playing.</p>
+    </div>
+  </div>
+
+  <script src="packs.js"></script>
+  <script>
+  const Game = (() => {
+    // ---- State ----
+    let settings = { seconds: 90, control: 'tilt' };
+    let allPacks = [];
+    let current = null;        // active pack
+    let deck = [];             // shuffled cards remaining
+    let history = [];          // {word, result}
+    let score = 0;
+    let timeLeft = 0;
+    let timerId = null;
+    let running = false;
+    let tiltReady = true;      // gate so one tilt = one answer
+    let audioCtx = null;
+    let wakeLock = null;
+
+    const $ = id => document.getElementById(id);
+    const screens = ['home', 'ready', 'countdown', 'play', 'results', 'builder'];
+
+    // ---- Persistence ----
+    const CUSTOM_KEY = 'headsup_custom_packs_v1';
+    const SET_KEY = 'headsup_settings_v1';
+    function loadCustom() {
+      try { return JSON.parse(localStorage.getItem(CUSTOM_KEY)) || []; } catch { return []; }
+    }
+    function saveCustomList(list) { localStorage.setItem(CUSTOM_KEY, JSON.stringify(list)); }
+    function loadSettings() {
+      try { const s = JSON.parse(localStorage.getItem(SET_KEY)); if (s) settings = { ...settings, ...s }; } catch {}
+    }
+    function persistSettings() { localStorage.setItem(SET_KEY, JSON.stringify(settings)); }
+
+    // ---- Screen routing ----
+    function show(name) {
+      screens.forEach(s => $(s + '-screen').classList.toggle('active', s === name));
+    }
+
+    // ---- Home render ----
+    function renderDecks() {
+      allPacks = [...(window.HEADS_UP_PACKS || []), ...loadCustom()];
+      const grid = $('deck-grid');
+      grid.innerHTML = '';
+      allPacks.forEach(p => {
+        const el = document.createElement('div');
+        el.className = 'deck' + (p.custom ? ' custom' : '');
+        el.innerHTML = `
+          <div class="glow" style="background:${p.color}"></div>
+          ${p.custom ? '<span class="badge">MINE</span>' : ''}
+          <div class="emoji">${p.emoji}</div>
+          <div class="name">${escapeHtml(p.name)}</div>
+          <div class="desc">${escapeHtml(p.desc || (p.cards.length + ' cards to guess'))}</div>
+          <div class="count">${p.cards.length} cards</div>`;
+        el.onclick = () => openReady(p);
+        grid.appendChild(el);
+      });
+      // Add-your-own tile
+      const add = document.createElement('div');
+      add.className = 'deck new-deck';
+      add.innerHTML = `<div class="emoji">➕</div><div class="name">New Deck</div><div class="desc">Make your own card pack</div>`;
+      add.onclick = openBuilder;
+      grid.appendChild(add);
+    }
+
+    function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+    // ---- Settings UI ----
+    function bindSettings() {
+      $('timer-seg').querySelectorAll('button[data-sec]').forEach(b => {
+        b.classList.toggle('on', +b.dataset.sec === settings.seconds);
+        b.onclick = () => {
+          settings.seconds = +b.dataset.sec; persistSettings();
+          $('timer-seg').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+        };
+      });
+      $('control-seg').querySelectorAll('button[data-mode]').forEach(b => {
+        b.classList.toggle('on', b.dataset.mode === settings.control);
+        b.onclick = () => {
+          settings.control = b.dataset.mode; persistSettings();
+          $('control-seg').querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b));
+        };
+      });
+    }
+
+    // ---- Ready ----
+    function openReady(pack) {
+      current = pack;
+      $('ready-emoji').textContent = pack.emoji;
+      $('ready-name').textContent = pack.name;
+      document.documentElement.style.setProperty('--accent', pack.color);
+      const tiltNote = $('tilt-note');
+      if (settings.control === 'tilt') {
+        $('howto-correct').textContent = 'Tilt down';
+        $('howto-pass').textContent = 'Tilt up';
+        tiltNote.textContent = 'Using tilt controls. If your device asks for motion permission, tap Allow.';
+      } else {
+        $('howto-correct').textContent = 'Tap right side';
+        $('howto-pass').textContent = 'Tap left side';
+        tiltNote.textContent = 'Using tap controls — great on a laptop or when motion sensors are off.';
+      }
+      show('ready');
+    }
+
+    function goHome() {
+      stopTimer();
+      releaseTilt();
+      releaseWake();
+      running = false;
+      document.documentElement.style.setProperty('--accent', '#8b5cf6');
+      renderDecks();
+      show('home');
+    }
+
+    // ---- Countdown ----
+    async function beginCountdown() {
+      if (settings.control === 'tilt') {
+        const ok = await requestTilt();
+        if (!ok) {
+          settings.control = 'tap';
+          alert('Motion controls unavailable — switching to tap controls.');
+        }
+      }
+      requestWake();
+      show('countdown');
+      let n = 3;
+      $('count-num').textContent = n;
+      beep(660, 0.08);
+      const iv = setInterval(() => {
+        n--;
+        if (n === 0) {
+          clearInterval(iv);
+          $('count-num').textContent = 'GO!';
+          beep(880, 0.15);
+          setTimeout(startRound, 550);
+        } else {
+          $('count-num').textContent = n;
+          $('count-num').style.animation = 'none';
+          void $('count-num').offsetWidth;
+          $('count-num').style.animation = 'pop .8s ease';
+          beep(660, 0.08);
+        }
+      }, 1000);
+    }
+
+    // ---- Round ----
+    function startRound() {
+      deck = shuffle([...current.cards]);
+      history = [];
+      score = 0;
+      timeLeft = settings.seconds;
+      running = true;
+      tiltReady = true;
+      updateScore();
+      $('timer-pill').textContent = timeLeft;
+      $('desktop-controls').style.display = isTouch() ? 'none' : 'flex';
+      $('play-hint').style.display = (settings.control === 'tap' && isTouch()) ? 'flex' : 'none';
+      $('tap-zones').style.display = settings.control === 'tap' ? 'flex' : 'none';
+      show('play');
+      resetWordBg();
+      nextWord();
+      timerId = setInterval(tick, 1000);
+    }
+
+    function tick() {
+      timeLeft--;
+      $('timer-pill').textContent = Math.max(0, timeLeft);
+      if (timeLeft <= 5 && timeLeft > 0) beep(500, 0.06);
+      if (timeLeft <= 0) endRound();
+    }
+
+    function nextWord() {
+      if (deck.length === 0) deck = shuffle([...current.cards]); // reshuffle if exhausted
+      const w = deck.pop();
+      current._lastWord = w;
+      $('the-word').textContent = w;
+    }
+
+    function answer(result) {
+      if (!running) return;
+      if (result === 'correct') { score++; beep(880, 0.1); vibrate(40); }
+      else { beep(300, 0.12); vibrate([20, 40, 20]); }
+      history.push({ word: current._lastWord, result });
+      updateScore();
+      flash(result);
+    }
+
+    function flash(result) {
+      const wrap = $('play-wrap');
+      const word = $('the-word');
+      const isCorrect = result === 'correct';
+      wrap.style.background = isCorrect ? 'var(--correct)' : 'var(--pass)';
+      word.classList.add('feedback-word');
+      word.textContent = isCorrect ? 'CORRECT!' : 'PASS';
+      setTimeout(() => {
+        resetWordBg();
+        word.classList.remove('feedback-word');
+        if (running) { nextWord(); }
+      }, 380);
+    }
+
+    function resetWordBg() { $('play-wrap').style.background = 'var(--bg)'; }
+
+    function updateScore() { $('score-pill').textContent = score + ' ✅'; }
+
+    function endRound() {
+      running = false;
+      stopTimer();
+      releaseTilt();
+      releaseWake();
+      beep(440, 0.4);
+      vibrate([80, 60, 80]);
+      $('final-score').textContent = score;
+      const list = $('result-list');
+      list.innerHTML = '';
+      if (history.length === 0) {
+        list.innerHTML = '<div style="text-align:center;color:var(--muted)">No cards this round — give it another go!</div>';
+      }
+      history.forEach(h => {
+        const item = document.createElement('div');
+        item.className = 'result-item ' + h.result;
+        item.innerHTML = `<div class="ic">${h.result === 'correct' ? '✔' : '⏭'}</div><div class="w">${escapeHtml(h.word)}</div>`;
+        list.appendChild(item);
+      });
+      show('results');
+    }
+
+    function stopTimer() { if (timerId) { clearInterval(timerId); timerId = null; } }
+
+    // ---- Tilt handling ----
+    let tiltHandler = null;
+    function requestTilt() {
+      return new Promise(resolve => {
+        const need = typeof DeviceOrientationEvent !== 'undefined' &&
+          typeof DeviceOrientationEvent.requestPermission === 'function';
+        const attach = () => { window.addEventListener('deviceorientation', onTilt); tiltHandler = onTilt; resolve(true); };
+        if (need) {
+          DeviceOrientationEvent.requestPermission().then(state => {
+            if (state === 'granted') attach(); else resolve(false);
+          }).catch(() => resolve(false));
+        } else if (typeof DeviceOrientationEvent !== 'undefined') {
+          attach();
+        } else { resolve(false); }
+      });
+    }
+    function releaseTilt() { if (tiltHandler) { window.removeEventListener('deviceorientation', tiltHandler); tiltHandler = null; } }
+
+    function onTilt(e) {
+      if (!running || settings.control !== 'tilt') return;
+      const beta = e.beta;   // front-back tilt, -180..180
+      if (beta == null) return;
+      // Phone held to forehead in landscape ≈ beta near 0. Tilt down ~ beta > 45, up ~ beta < -45.
+      if (tiltReady) {
+        if (beta > 55 && beta < 130) { tiltReady = false; answer('correct'); }
+        else if (beta < -55 && beta > -130) { tiltReady = false; answer('pass'); }
+      } else {
+        // re-arm when roughly level again
+        if (beta > -25 && beta < 25) tiltReady = true;
+      }
+    }
+
+    // ---- Tap zones ----
+    function bindTap() {
+      $('tap-zones').querySelectorAll('.zone').forEach(z => {
+        z.addEventListener('click', () => { if (settings.control === 'tap') answer(z.dataset.act); });
+      });
+      // keyboard for desktop
+      window.addEventListener('keydown', e => {
+        if (!running) return;
+        if (e.key === 'ArrowRight') answer('correct');
+        else if (e.key === 'ArrowLeft') answer('pass');
+      });
+    }
+
+    // ---- Builder ----
+    const EMOJIS = ['🎉', '🎯', '💡', '🍀', '🔥', '🎸', '🐙', '🚀', '👑', '🧩', '🍩', '🏆'];
+    let chosenEmoji = '🎉';
+    function openBuilder() {
+      $('b-name').value = '';
+      $('b-cards').value = '';
+      chosenEmoji = EMOJIS[0];
+      const pick = $('emoji-pick');
+      pick.innerHTML = '';
+      EMOJIS.forEach(em => {
+        const b = document.createElement('button');
+        b.textContent = em;
+        b.className = em === chosenEmoji ? 'on' : '';
+        b.onclick = () => { chosenEmoji = em; pick.querySelectorAll('button').forEach(x => x.classList.toggle('on', x === b)); };
+        pick.appendChild(b);
+      });
+      updateBuilderCount();
+      show('builder');
+    }
+    function updateBuilderCount() {
+      const n = parseCards($('b-cards').value).length;
+      const el = $('b-count');
+      el.textContent = n + ' card' + (n === 1 ? '' : 's') + (n < 5 ? ' — add at least 5' : ' — ready to save');
+      el.style.color = n < 5 ? 'var(--muted)' : 'var(--correct)';
+    }
+    function parseCards(text) {
+      return text.split('\n').map(s => s.trim()).filter(Boolean);
+    }
+    function saveCustom() {
+      const name = $('b-name').value.trim();
+      const cards = parseCards($('b-cards').value);
+      if (!name) { alert('Give your deck a name.'); return; }
+      if (cards.length < 5) { alert('Add at least 5 cards.'); return; }
+      const list = loadCustom();
+      const pack = {
+        id: 'custom_' + name.toLowerCase().replace(/\s+/g, '_') + '_' + list.length,
+        name, emoji: chosenEmoji, color: '#0ea5e9',
+        desc: 'Your custom deck', cards, custom: true
+      };
+      list.push(pack);
+      saveCustomList(list);
+      goHome();
+    }
+
+    // ---- Helpers ----
+    function shuffle(a) { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+    function isTouch() { return 'ontouchstart' in window || navigator.maxTouchPoints > 0; }
+    function beep(freq, dur) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        const o = audioCtx.createOscillator(), g = audioCtx.createGain();
+        o.frequency.value = freq; o.type = 'sine';
+        o.connect(g); g.connect(audioCtx.destination);
+        g.gain.setValueAtTime(0.15, audioCtx.currentTime);
+        g.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + dur);
+        o.start(); o.stop(audioCtx.currentTime + dur);
+      } catch {}
+    }
+    function vibrate(p) { try { navigator.vibrate && navigator.vibrate(p); } catch {} }
+    async function requestWake() { try { if ('wakeLock' in navigator) wakeLock = await navigator.wakeLock.request('screen'); } catch {} }
+    function releaseWake() { try { wakeLock && wakeLock.release(); wakeLock = null; } catch {} }
+
+    // ---- Init ----
+    function init() {
+      loadSettings();
+      bindSettings();
+      renderDecks();
+      bindTap();
+      $('b-cards') && $('b-cards').addEventListener('input', updateBuilderCount);
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && running) requestWake(); });
+    }
+
+    return { init, goHome, beginCountdown, openBuilder, saveCustom, answer };
+  })();
+
+  Game.init();
+  </script>
+</body>
+</html>
