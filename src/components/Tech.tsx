@@ -21,7 +21,7 @@ const Tech = () => {
         },
         {
           name: 'PMI-CPMAI™',
-          // TODO: add the public Credly URL for the CPMAI badge to enable the Verify link.
+          verifyUrl: 'https://www.credly.com/badges/70bb814f-2844-4bbf-a5cb-a3d39e0b4077/public_url',
         },
       ],
       skills: ['Agile', 'Scrum', 'Kanban', 'Roadmapping', 'Hybrid', 'Stakeholder Management', 'Budgeting & Invoicing'],
