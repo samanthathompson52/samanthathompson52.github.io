@@ -1,8 +1,29 @@
+type Cert = {
+  name: string;
+  /** Public Credly badge URL. Omit until the badge has been issued/claimed. */
+  verifyUrl?: string;
+};
+
+type Category = {
+  title: string;
+  certs: Cert[];
+  skills: string[];
+};
+
 const Tech = () => {
-  const categories = [
+  const categories: Category[] = [
     {
       title: 'Project Management',
-      certs: ['PMP®'],
+      certs: [
+        {
+          name: 'PMP®',
+          verifyUrl: 'https://www.credly.com/badges/30623d2d-75ea-40b6-aa20-c563f2819df0/public_url',
+        },
+        {
+          name: 'PMI-CPMAI™',
+          // TODO: add the public Credly URL for the CPMAI badge to enable the Verify link.
+        },
+      ],
       skills: ['Agile', 'Scrum', 'Kanban', 'Roadmapping', 'Hybrid', 'Stakeholder Management', 'Budgeting & Invoicing'],
     },
     {
@@ -43,29 +64,45 @@ const Tech = () => {
               </ul>
               {cat.certs.length > 0 && (
                 <div className="mt-auto pt-6 border-t border-gray-100 mt-6">
-                  <p className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-3">Certification</p>
-                  {cat.certs.map((cert) => (
-                    <a
-                      key={cert}
-                      href="https://www.credly.com/badges/30623d2d-75ea-40b6-aa20-c563f2819df0/public_url"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between w-full bg-main text-white font-bold text-sm px-4 py-3 rounded-xl hover:opacity-90 transition-opacity"
-                    >
-                      <span className="flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 shrink-0" aria-hidden="true">
-                          <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
-                        </svg>
-                        {cert}
-                      </span>
-                      <span className="text-xs font-medium opacity-80 flex items-center gap-1">
-                        Verify
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3" aria-hidden="true">
-                          <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm6.75-3a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.56l-4.97 4.97a.75.75 0 1 1-1.06-1.06l4.97-4.97h-3.69a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
-                        </svg>
-                      </span>
-                    </a>
-                  ))}
+                  <p className="text-sm font-bold uppercase tracking-widest text-gray-400 mb-3">
+                    {cat.certs.length > 1 ? 'Certifications' : 'Certification'}
+                  </p>
+                  <div className="flex flex-col gap-3">
+                    {cat.certs.map((cert) => {
+                      const label = (
+                        <span className="flex items-center gap-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 shrink-0" aria-hidden="true">
+                            <path fillRule="evenodd" d="M16.403 12.652a3 3 0 0 0 0-5.304 3 3 0 0 0-3.75-3.751 3 3 0 0 0-5.305 0 3 3 0 0 0-3.751 3.75 3 3 0 0 0 0 5.305 3 3 0 0 0 3.75 3.751 3 3 0 0 0 5.305 0 3 3 0 0 0 3.751-3.75Zm-2.546-4.46a.75.75 0 0 0-1.214-.883l-3.483 4.79-1.88-1.88a.75.75 0 1 0-1.06 1.061l2.5 2.5a.75.75 0 0 0 1.137-.089l4-5.5Z" clipRule="evenodd" />
+                          </svg>
+                          {cert.name}
+                        </span>
+                      );
+                      const baseClass =
+                        'flex items-center justify-between w-full bg-main text-white font-bold text-sm px-4 py-3 rounded-xl';
+
+                      return cert.verifyUrl ? (
+                        <a
+                          key={cert.name}
+                          href={cert.verifyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${baseClass} hover:opacity-90 transition-opacity`}
+                        >
+                          {label}
+                          <span className="text-xs font-medium opacity-80 flex items-center gap-1">
+                            Verify
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-3 h-3" aria-hidden="true">
+                              <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm6.75-3a.75.75 0 0 1 .75-.75h5.5a.75.75 0 0 1 .75.75v5.5a.75.75 0 0 1-1.5 0V4.56l-4.97 4.97a.75.75 0 1 1-1.06-1.06l4.97-4.97h-3.69a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
+                            </svg>
+                          </span>
+                        </a>
+                      ) : (
+                        <div key={cert.name} className={baseClass}>
+                          {label}
+                        </div>
+                      );
+                    })}
+                  </div>
                 </div>
               )}
             </div>
